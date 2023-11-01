@@ -6,17 +6,25 @@ vim.cmd [[packadd packer.nvim]]
 require('packer').startup(function(use)
   -- Packer can manage itself
   use ('wbthomason/packer.nvim')
+  use('burntsushi/ripgrep')
+  use('hrsh7th/nvim-cmp')
+  use('hrsh7th/cmp-nvim-lsp')
+  use('hrsh7th/cmp-buffer')
+  use('hrsh7th/cmp-path')
   use ({
-	  'nvim-telescope/telescope.nvim', tag = '0.1.3',
+	  'nvim-telescope/telescope.nvim', tag = '0.1.4',
 	  -- or                            , branch = '0.1.x',
 	  requires = { {'nvim-lua/plenary.nvim'} }
   })
   use ({'catppuccin/nvim', as='catppuccin'})
   use('nvim-treesitter/nvim-treesitter', {run= ':TSUpdate'})
   use('nvim-treesitter/playground')
+  use ('nvim-treesitter/nvim-treesitter-refactor')
   use('theprimeagen/harpoon')
   use('mbbill/undotree')
   use('tpope/vim-fugitive')
+  use('nvim-lualine/lualine.nvim')
+  use ("christoomey/vim-tmux-navigator")
   use {
 	  'VonHeikemen/lsp-zero.nvim',
 	  branch = 'v3.x',
@@ -33,4 +41,19 @@ require('packer').startup(function(use)
 		  {'L3MON4D3/LuaSnip'},
 	  }
   }
+  use("jose-elias-alvarez/null-ls.nvim")
+  use("MunifTanjim/prettier.nvim")
+  use ("mfussenegger/nvim-dap")
+  use ( 'simrat39/rust-tools.nvim' )
+  use ("folke/neodev.nvim")
+  use ({ "mxsdev/nvim-dap-vscode-js", requires = {"mfussenegger/nvim-dap"} })
+  use {
+      "microsoft/vscode-js-debug",
+      opt = true,
+      run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out" 
+  }
+  use ('leoluz/nvim-dap-go')
+  use ('rcarriga/nvim-dap-ui')
+  use('theHamsta/nvim-dap-virtual-text')
+  use('nvim-telescope/telescope-dap.nvim')
   end)

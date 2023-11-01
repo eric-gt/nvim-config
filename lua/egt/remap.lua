@@ -10,6 +10,9 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
+-- go to the previous buffer
+vim.keymap.set("n", "<leader>lb", ":b#<CR>");
+
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
@@ -38,3 +41,7 @@ vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
 
+vim.keymap.set("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR> window-left")
+vim.keymap.set("n", "<C-l>", "<cmd> TmuxNavigateLeft<CR> window-right")
+vim.keymap.set("n", "<C-k>", "<cmd> TmuxNavigateLeft<CR> window-up")
+vim.keymap.set("n", "<C-j>", "<cmd> TmuxNavigateLeft<CR> window-down")
