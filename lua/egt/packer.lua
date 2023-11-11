@@ -38,7 +38,8 @@ require('packer').startup(function(use)
 		  -- Autocompletion
 		  {'hrsh7th/nvim-cmp'},
 		  {'hrsh7th/cmp-nvim-lsp'},
-		  {'L3MON4D3/LuaSnip'},
+		  {'L3MON4D3/LuaSnip', tag="v2.*"},
+          {'saadparwaiz1/cmp_luasnip'}
 	  }
   }
   use("jose-elias-alvarez/null-ls.nvim")
