@@ -68,12 +68,6 @@ require('packer').startup(function(use)
   use ('rcarriga/nvim-dap-ui')
   use('theHamsta/nvim-dap-virtual-text')
   use('nvim-telescope/telescope-dap.nvim')
-    use({
-        "iamcco/markdown-preview.nvim",
-        run = function() vim.fn["mkdp#util#install"]() end,
-    })
-    use({"ray-x/guihua.lua"})
-    use ({"ray-x/go.nvim"})
   if packer_bootstrap then
     require('packer').sync()
   end
