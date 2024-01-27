@@ -10,8 +10,9 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- go to the previous buffer
+-- cycle between vim buffers
 vim.keymap.set("n", "<leader>lb", ":b#<CR>");
+vim.keymap.set("n", "<leader>nb", ":bnext<CR>");
 
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])

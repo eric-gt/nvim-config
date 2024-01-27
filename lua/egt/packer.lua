@@ -62,7 +62,7 @@ require('packer').startup(function(use)
   use {
       "microsoft/vscode-js-debug",
       opt = true,
-      run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out" 
+      run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
   }
   use ('leoluz/nvim-dap-go')
   use ('rcarriga/nvim-dap-ui')
@@ -74,6 +74,8 @@ require('packer').startup(function(use)
     })
     use({"ray-x/guihua.lua"})
     use ({"ray-x/go.nvim"})
+    use({"cameron-wags/rainbow_csv.nvim"})
+    use({"mg979/vim-visual-multi"})
   if packer_bootstrap then
     require('packer').sync()
   end

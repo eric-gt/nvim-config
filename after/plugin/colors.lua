@@ -1,10 +1,10 @@
 require("catppuccin").setup({
-    flavour="mocha",
     background = {
         light = "frappe",
-        dark = "mocha"
+        dark = "macchiato"
     },
     transparent_background = true,
+    term_colors=true
 })
 
 vim.cmd.colorscheme "catppuccin"

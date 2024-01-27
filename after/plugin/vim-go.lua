@@ -1,3 +1,3 @@
-require('go').setup({
-  goimport="golines"
-})
+ require('go').setup({
+     gofmt= 'gofmt'
+ })
