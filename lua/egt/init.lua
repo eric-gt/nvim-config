@@ -2,7 +2,7 @@ require("egt.packer")
 require("egt.remap")
 require("egt.set")
 require("egt.snips")
-
+require("egt.on_attach")
 -- Run gofmt on save
 -- local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
 -- vim.api.nvim_create_autocmd("BufWritePre", {

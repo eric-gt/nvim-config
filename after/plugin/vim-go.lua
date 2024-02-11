@@ -1,3 +1,4 @@
- require('go').setup({
-     gofmt= 'gofmt'
- })
+require('go').setup({
+    gofmt = 'gofmt'
+})
+
