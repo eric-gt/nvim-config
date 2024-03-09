@@ -11,7 +11,26 @@ ls.setup({
 	ext_opts = {
 		[types.choiceNode] = {
 			active = {
-				virt_text = { { "<-", "Error" } },
+				virt_text = { { "󱃔", "Error" } },
+			},
+			passive = {
+				virt_text = { { "󱃔", "Label" } },
+			},
+		},
+		[types.dynamicNode] = {
+			active = {
+				virt_text = { { "󰡱", "Error" } },
+			},
+			passive = {
+				virt_text = { { "󰡱", "Label" } },
+			},
+		},
+		[types.insertNode] = {
+			active = {
+				virt_text = { { "󱞥", "Error" } },
+			},
+			passive = {
+				virt_text = { { "󱞥", "Label" } },
 			},
 		},
 	},

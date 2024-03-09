@@ -25,6 +25,7 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-buffer",
+			"doxnit/cmp-luasnip-choice",
 
 			-- If you want to add a bunch of pre-configured snippets,
 			--    you can use this plugin to help you. It even has snippets
@@ -36,6 +37,7 @@ return {
 			-- See `:help cmp`
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
+			require("cmp_luasnip_choice").setup({})
 
 			cmp.setup({
 				snippet = {
@@ -65,6 +67,12 @@ return {
 					--  completions whenever it has completion options available.
 					["<C-Space>"] = cmp.mapping.complete({}),
 
+					["<C-i>"] = cmp.mapping(function()
+						if luasnip.choice_active() then
+							luasnip.change_choice()
+						end
+					end),
+
 					-- Think of <c-l> as moving to the right of your snippet expansion.
 					--  So if you have a snippet that's like:
 					--  function $name($args)
@@ -87,6 +95,7 @@ return {
 				sources = {
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
+					{ name = "luasnip_choice" },
 					{ name = "path" },
 				},
 			})

@@ -4,6 +4,7 @@ local ls = require("luasnip")
 
 local fmta = require("luasnip.extras.fmt").fmta
 local rep = require("luasnip.extras").rep
+local k = require("luasnip.nodes.key_indexer").new_key
 
 local s = ls.snippet
 local c = ls.choice_node
@@ -138,20 +139,59 @@ ls.add_snippets("go", {
 			[[
             <val>,<err> := <f>(<args>)
             if <err_same> != nil {
-                return <result>
+               <handle_error>
+               <return_result>
             }
             <finish>
     ]],
 			{
 				val = i(1),
-				err = i(2, "err"),
-				f = i(3),
+				err = i(2, "err", { key = "i2-key" }),
+				f = i(3, "", { key = "i3-key" }),
 				args = i(4),
 				err_same = rep(2),
-				result = d(5, go_return_values, { 2, 3 }),
+				handle_error = i(5, "log.Fatal(err.Error())"),
+				return_result = c(6, {
+					t(nil, ""),
+					sn(
+						nil,
+						fmta([[return <result>]], {
+							result = d(1, go_return_values, { k("i2-key"), k("i3-key") }),
+						})
+					),
+				}),
 				finish = i(0),
 			}
 		)
 	),
 	s("ie", fmta("if err != nil {\n\treturn <err>\n}", { err = i(1, "err") })),
+	s(
+		"erni",
+		fmta(
+			[[
+		if <err> := <f>(<args>); <err_same> != nil {
+			<handle_error>
+			<return_result>
+		}
+		<finish>
+		]],
+			{
+				err = i(1, "err", { key = "i1-key" }),
+				f = i(2, "", { key = "i2-key" }),
+				args = i(3),
+				err_same = rep(1),
+				handle_error = i(4, "log.Fatal(err.Error())"),
+				return_result = c(5, {
+					t(nil, ""),
+					sn(
+						nil,
+						fmta("return <result>", {
+							result = d(1, go_return_values, { k("i1-key"), k("i2-key") }),
+						})
+					),
+				}),
+				finish = i(0),
+			}
+		)
+	),
 })
