@@ -23,6 +23,7 @@ return {
 			--  nvim-cmp does not ship with all sources by default. They are split
 			--  into multiple repos for maintenance purposes.
 			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-buffer",
 			"doxnit/cmp-luasnip-choice",
@@ -94,6 +95,7 @@ return {
 				}),
 				sources = {
 					{ name = "nvim_lsp" },
+					{ name = "nvim_lua" },
 					{ name = "luasnip" },
 					{ name = "luasnip_choice" },
 					{ name = "path" },

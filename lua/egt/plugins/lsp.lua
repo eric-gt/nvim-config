@@ -87,6 +87,21 @@ return {
 			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 			local servers = {
+				templ = function()
+					vim.filetype.add({ extension = { templ = "templ" } })
+					require("lspconfig").templ.setup({})
+				end,
+				htmx = function()
+					require("lspconfig").htmx.setup({
+						filetypes = { "html", "templ" },
+					})
+				end,
+				tailwindcss = function()
+					require("lspconfig").tailwindcss.setup({
+						filetypes = { "templ", "astro", "javascript", "typescript", "react" },
+						init_options = { userLanguages = { templ = "html" } },
+					})
+				end,
 				--
 				-- Some languages (like typescript) have entire language plugins that can be useful:
 				--    https://github.com/pmizio/typescript-tools.nvim
@@ -140,6 +155,7 @@ return {
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 			require("mason-lspconfig").setup({
+				ensure_installed = { "stylua", "tsserver", "gopls", "templ", "htmx", "html", "tailwindcss" },
 				handlers = {
 					function(server_name)
 						local server = servers[server_name] or {}
