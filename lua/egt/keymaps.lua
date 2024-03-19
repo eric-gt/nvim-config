@@ -28,13 +28,16 @@ vim.keymap.set("n", "<leader>LU", "<cmd>Lazy update<CR>", { desc = "Check and [U
 --  paste and persist in buffer, aka ThePrimeagen's "greatest remap ever"
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "[P]aste and preserve buffer" })
 
--- yank to OS clipboard, aka next greatest remap ever : asbjornHaland
+-- yank to OS clipboard, aka next greatest remap ever, from asbjornHaland
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "[Y]ank line into OS clipboard" })
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "[Y]ank to end of line into OS clipboard" })
 
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "[D]elete to null buffer" })
 -- goto last buffer
 vim.keymap.set("n", "<leader>lb", "<cmd>b#<CR>", { desc = "goto [L]ast [B]uffer" })
+
+-- run the last executed Command Mode command. Very useful if you don't want your :s regexes to get out of hand
+vim.keymap.set("n", "<leader>lc", "@:", { desc = "execute [L]ast [C]ommand" })
 
 -- move and re-format in Visual
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "move highlighted line up one line and reformat" })
@@ -62,17 +65,3 @@ vim.keymap.set(
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { desc = "make current file e[X]ecutable" })
 -- source the current file
 vim.keymap.set("n", "<leader>rc", "<cmd>!source %<CR>", { desc = "[R]eload [C]urrent file" })
-
--- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
-
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
-vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
-})
