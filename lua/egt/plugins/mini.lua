@@ -4,7 +4,7 @@ return {
 		config = function()
 			-- Startup screen
 			--
-			require("mini.starter").setup({})
+			-- require("mini.starter").setup({})
 			--
 			-- Better Around/Inside textobjects
 			--
