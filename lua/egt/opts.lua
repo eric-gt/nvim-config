@@ -7,8 +7,8 @@ vim.opt.number = true
 
 -- set tab width
 vim.opt.et = true
-vim.opt.ts = 2
-vim.opt.sw = 2
+vim.opt.ts = 4
+vim.opt.sw = 4
 vim.opt.sts = -1
 
 -- Enable mouse mode, can be useful for resizing splits for example!

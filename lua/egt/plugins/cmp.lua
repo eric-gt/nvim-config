@@ -58,11 +58,6 @@ return {
 					-- Select the [p]revious item
 					["<C-p>"] = cmp.mapping.select_prev_item(),
 
-					-- NOTE: hack to keep nvim_cmp from eating <Tab> keystrokes in insert mode. Not sure why it's happening
-					["<Tab>"] = cmp.mapping(function(fallback)
-						fallback()
-					end, { "i", "s" }),
-
 					-- Accept ([y]es) the completion.
 					--  This will auto-import if your LSP supports it.
 					--  This will expand snippets if the LSP sent a snippet.
@@ -73,9 +68,11 @@ return {
 					--  completions whenever it has completion options available.
 					["<C-Space>"] = cmp.mapping.complete({}),
 
-					["<C-i>"] = cmp.mapping(function()
+					["<C-i>"] = cmp.mapping(function(fallback)
 						if luasnip.choice_active() then
 							luasnip.change_choice()
+						else
+							fallback()
 						end
 					end),
 
