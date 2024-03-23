@@ -68,11 +68,9 @@ return {
 					--  completions whenever it has completion options available.
 					["<C-Space>"] = cmp.mapping.complete({}),
 
-					["<C-i>"] = cmp.mapping(function(fallback)
+					["<C-i>"] = cmp.mapping(function()
 						if luasnip.choice_active() then
 							luasnip.change_choice()
-						else
-							fallback()
 						end
 					end),
 

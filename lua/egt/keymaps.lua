@@ -65,3 +65,5 @@ vim.keymap.set(
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { desc = "make current file e[X]ecutable" })
 -- source the current file
 vim.keymap.set("n", "<leader>rc", "<cmd>!source %<CR>", { desc = "[R]eload [C]urrent file" })
+
+vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", { desc = "Toggle [M]arkdown [P]review" })
