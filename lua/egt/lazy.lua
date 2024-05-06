@@ -9,6 +9,9 @@ vim.opt.rtp:prepend(lazypath)
 
 -- loads all  files matching *.lua in /plugins
 require("lazy").setup("egt.plugins", {
+	defaults = {
+		lazy = true,
+	},
 	ui = {
 		icons = vim.g.have_nerd_font and {} or {
 			cmd = "⌘",

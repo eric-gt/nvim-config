@@ -1,1 +1,5 @@
-return { "cameron-wags/rainbow_csv.nvim" }
+return {
+	"cameron-wags/rainbow_csv.nvim",
+	lazy = true,
+	ft = { "csv" },
+}

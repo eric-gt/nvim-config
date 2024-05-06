@@ -2,11 +2,12 @@ return {
 	{
 		"MunifTanjim/prettier.nvim",
 		lazy = true,
+		ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 		config = function()
 			local prettier = require("prettier")
 
 			prettier.setup({
-				bin = "prettierd", -- or `'prettierd'` (v0.23.3+)
+				bin = "prettierd", -- or `'prettier'` (v0.23.3+)
 				filetypes = {
 					"css",
 					"graphql",

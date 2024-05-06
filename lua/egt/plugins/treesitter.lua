@@ -31,6 +31,7 @@ return {
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-context",
+		event = { "VimEnter" },
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		config = function()
 			local tsc = require("treesitter-context")
