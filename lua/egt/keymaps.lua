@@ -1,4 +1,4 @@
--- [[ Basic Keymaps ]]
+-- [[ Globally Accessible Keymaps ]]
 --  See `:help vim.keymap.set()`
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
@@ -65,9 +65,3 @@ vim.keymap.set(
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { desc = "make current file e[X]ecutable" })
 -- source the current file
 vim.keymap.set("n", "<leader>rc", "<cmd>!source %<CR>", { desc = "[R]eload [C]urrent file" })
-
--- format JSON files
-vim.keymap.set("n", "<leader>jq", function()
-	vim.cmd("%!jq '.'")
-	vim.cmd.write()
-end, { desc = "Format [J]SON with J[Q]" })
