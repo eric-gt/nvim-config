@@ -1,6 +1,8 @@
 -- Set <space> as the leader key. Always happens first
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+
+-- My Nerd font, for fun icons
 vim.opt.guifont = "Inconsolata"
 vim.g.have_nerd_font = true
 
