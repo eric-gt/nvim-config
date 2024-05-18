@@ -64,4 +64,4 @@ set(
 -- add executable permissions to current buffer
 set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { desc = "make current file e[X]ecutable" })
 -- source the current file
-set("n", "<leader>rc", "<cmd>!source %<CR>", { desc = "[R]eload [C]urrent file" })
+set("n", "<leader>rc", "<cmd>source %<CR>", { desc = "[R]eload [C]urrent file" })

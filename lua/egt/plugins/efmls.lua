@@ -9,10 +9,9 @@ return {
 			local eslint = require("efmls-configs.linters.eslint")
 			local prettier = require("efmls-configs.formatters.prettier")
 			local stylua = require("efmls-configs.formatters.stylua")
-			local luacheck = require("efmls-configs.linters.luacheck")
 			local languages = {
 				typescript = { eslint, prettier },
-				lua = { luacheck, stylua },
+				lua = { stylua },
 			}
 
 			-- Or use the defaults provided by this plugin

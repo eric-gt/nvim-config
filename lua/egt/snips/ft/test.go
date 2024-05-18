@@ -23,3 +23,7 @@ func SomethingElse(shouldError bool) error {
 	}
 	return nil
 }
+
+func main() {
+	Something()
+}

@@ -1,19 +1,24 @@
 return {
 	{
 		"mfussenegger/nvim-dap",
-		lazy = true,
-		keys = { "F1", "F2", "F3", "F4", "F5" },
+		lazy = false,
 		dependencies = {
 			"nvim-neotest/nvim-nio",
 			"rcarriga/nvim-dap-ui",
 			"folke/neodev.nvim",
 			"theHamsta/nvim-dap-virtual-text",
+			"Joakker/lua-json5",
 		},
 		config = function()
-			require("neodev").setup({})
+			require("neodev").setup({
+				library = { plugins = { "nvim-dap-ui" }, types = true },
+			})
 			local dap = require("dap")
+			local vscode = require("dap.ext.vscode")
+			vscode.json_decode = require("json5").parse
 
 			vim.keymap.set("n", "<F1>", function()
+				vscode.load_launchjs()
 				dap.continue()
 			end, { desc = "DAP Continue" })
 			vim.keymap.set("n", "<F2>", function()
@@ -29,7 +34,6 @@ return {
 				dap.close()
 			end, { desc = "DAP Close" })
 			vim.keymap.set("n", "<F6>", function()
-				require("dapui").open()
 				require("dap.ext.vscode").load_launchjs()
 			end, { desc = "load from launch.json" })
 			vim.keymap.set("n", "<leader>b", function()
@@ -46,12 +50,15 @@ return {
 			end, { desc = "open [d]ap [r]epl" })
 
 			require("nvim-dap-virtual-text").setup({})
-			require("dapui").setup()
-			vim.keymap.set("n", "<leader>o", function()
-				require("dapui").toggle()
-			end, { desc = "toggle [o]pen DAP  UI" })
-
 			local dapui = require("dapui")
+			dapui.setup()
+			vim.keymap.set("n", "<leader>o", function()
+				dapui.toggle()
+			end, { desc = "toggle [o]pen DAP  UI" })
+			vim.keymap.set("n", "<leader>?", function()
+				dapui.eval(nil, { enter = true })
+			end, { desc = "eval under cursor" })
+
 			dap.listeners.after.event_initialized["dapui_config"] = function()
 				dapui.open()
 			end

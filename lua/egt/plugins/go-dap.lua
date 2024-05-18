@@ -4,11 +4,10 @@ return {
 		lazy = true,
 		ft = { "go" },
 		config = function()
-			require("dap-go").setup()
+			require("dap-go").setup({})
 			vim.keymap.set("n", "<leader>dgt", function()
-				require("dap.ext.vscode").load_launchjs()
-				require("dap").debug_test()
-			end)
+				require("dap-go").debug_test()
+			end, { desc = "[D]ebug [G]o [T]est" })
 		end,
 	},
 }

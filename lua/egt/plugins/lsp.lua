@@ -12,6 +12,7 @@ return {
 			{ "j-hui/fidget.nvim", opts = {} },
 		},
 		config = function()
+			vim.g["diagnostics_active"] = true
 			local group = vim.api.nvim_create_augroup("lsp-attach", { clear = true })
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = group,
@@ -19,6 +20,16 @@ return {
 					local map = function(mode, keys, func, desc)
 						vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 					end
+					--Toggle the LSP Diagnostics (useful for places where you don't need working code)
+					map("n", "<leader>td", function()
+						if vim.g.diagnostics_active then
+							vim.g.diagnostics_active = false
+							vim.diagnostic.disable()
+						else
+							vim.g.diagnostics_active = true
+							vim.diagnostic.enable()
+						end
+					end, "[T]oggle [D]iagnostics")
 					-- Jump to the definition of the word under your cursor.
 					map("n", "gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
 
@@ -136,11 +147,14 @@ return {
 				"stylua",
 				"gopls",
 				"lua_ls",
+				"eslint",
+				"prettierd",
+				"prettier",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 			require("mason-lspconfig").setup({
-				ensure_installed = { "tsserver", "gopls", "templ", "htmx", "html", "tailwindcss" },
+				ensure_installed = { "gopls", "templ", "htmx", "html", "tailwindcss" },
 				handlers = {
 					function(server_name)
 						local server = servers[server_name] or {}

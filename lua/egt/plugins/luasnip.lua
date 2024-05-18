@@ -65,7 +65,7 @@ return {
 				loadfile(ft_path)()
 			end
 
-			vim.keymap.set("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/after/plugin/luasnip.lua<CR>")
+			vim.keymap.set("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/lua/egt/plugins/luasnip.lua<CR>")
 		end,
 	},
 }

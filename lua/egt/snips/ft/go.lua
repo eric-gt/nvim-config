@@ -1,5 +1,3 @@
-require("luasnip.session.snippet_collection").clear_snippets("go")
-
 local ls = require("luasnip")
 
 local fmta = require("luasnip.extras.fmt").fmta
