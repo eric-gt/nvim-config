@@ -6,7 +6,7 @@ vim.opt.hlsearch = true
 set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- open file tree
-set("n", "<leader>pv", "<cmd>Ex<CR>", { desc = "open file tree" })
+set("n", "<leader>pv", "<cmd>Oil<CR>", { desc = "open file tree" })
 
 -- Diagnostic keymaps
 set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })

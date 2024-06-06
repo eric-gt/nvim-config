@@ -144,6 +144,7 @@ return {
 			-- for you, so that they are available from within Neovim.
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
+				"actionlint",
 				"stylua",
 				"gopls",
 				"lua_ls",
@@ -154,7 +155,7 @@ return {
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 			require("mason-lspconfig").setup({
-				ensure_installed = { "gopls", "templ", "htmx", "html", "tailwindcss" },
+				ensure_installed = { "gopls", "templ", "htmx", "html", "tailwindcss", "yamlls" },
 				handlers = {
 					function(server_name)
 						local server = servers[server_name] or {}
