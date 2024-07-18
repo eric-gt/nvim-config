@@ -24,7 +24,7 @@ return {
 					map("n", "<leader>td", function()
 						if vim.g.diagnostics_active then
 							vim.g.diagnostics_active = false
-							vim.diagnostic.disable()
+							vim.diagnostic.enable(false)
 						else
 							vim.g.diagnostics_active = true
 							vim.diagnostic.enable()
