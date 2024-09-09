@@ -71,9 +71,6 @@ return {
 					map("n", "gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
 					map("i", "<leader>hs", vim.lsp.buf.signature_help, "[S]how [S]ignature [H]elp")
-					map("n", "<leader>f", function()
-						vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
-					end, "[F]ormat file")
 
 					-- The following two autocommands are used to highlight references of the
 					-- word under your cursor when your cursor rests there for a little while.
@@ -100,14 +97,35 @@ return {
 
 			vim.filetype.add({ extension = { templ = "templ" } })
 			local servers = {
+				eslint = {},
 				templ = {
 					filetypes = { "templ" },
+				},
+				yamlls = {
+					schemas = {
+						kubernetes = "*.yaml",
+						["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
+						["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+						["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
+						["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
+						["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
+						["http://json.schemastore.org/ansible-playbook"] = "*play*.{yml,yaml}",
+						["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
+						["https://json.schemastore.org/dependabot-v2"] = ".github/dependabot.{yml,yaml}",
+						["https://json.schemastore.org/gitlab-ci"] = "*gitlab-ci*.{yml,yaml}",
+						["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "*api*.{yml,yaml}",
+						["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "*docker-compose*.{yml,yaml}",
+						["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = "*flow*.{yml,yaml}",
+					},
 				},
 				htmx = {
 					filetypes = { "html", "templ" },
 				},
 				tailwindcss = {
 					filetypes = { "templ", "astro", "javascript", "typescript", "react" },
+				},
+				terraformls = {
+					filetypes = { "terraform" },
 				},
 				lua_ls = {
 					-- cmd = {...},
@@ -148,14 +166,15 @@ return {
 				"stylua",
 				"gopls",
 				"lua_ls",
-				"eslint",
+				"eslint_d",
 				"prettierd",
 				"prettier",
+				"tflint",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 			require("mason-lspconfig").setup({
-				ensure_installed = { "gopls", "templ", "htmx", "html", "tailwindcss", "yamlls" },
+				ensure_installed = { "gopls", "templ", "htmx", "html", "tailwindcss", "yamlls", "terraformls" },
 				handlers = {
 					function(server_name)
 						local server = servers[server_name] or {}

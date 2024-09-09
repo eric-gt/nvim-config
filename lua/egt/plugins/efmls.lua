@@ -6,12 +6,18 @@ return {
 		dependencies = { "neovim/nvim-lspconfig" },
 		config = function()
 			-- Register linters and formatters per language
-			local eslint = require("efmls-configs.linters.eslint")
+			local eslint_d = require("efmls-configs.linters.eslint_d")
 			local prettier = require("efmls-configs.formatters.prettier")
+			local prettier_d = require("efmls-configs.formatters.prettier_d")
 			local stylua = require("efmls-configs.formatters.stylua")
+			local terraform_fmt = require("efmls-configs.formatters.terraform_fmt")
+			local dprint = require("efmls-configs.formatters.dprint")
+
 			local languages = {
-				typescript = { eslint, prettier },
+				typescript = { prettier, prettier_d, eslint_d },
 				lua = { stylua },
+				terraform = { terraform_fmt },
+				toml = { dprint },
 			}
 
 			-- Or use the defaults provided by this plugin

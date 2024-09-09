@@ -55,9 +55,10 @@ return {
 			vim.keymap.set("n", "<leader>o", function()
 				dapui.toggle()
 			end, { desc = "toggle [o]pen DAP  UI" })
-			vim.keymap.set("n", "<leader>?", function()
-				dapui.eval(nil, { enter = true })
-			end, { desc = "eval under cursor" })
+			-- NOTE: Try and set this to only work if a debug session is running
+			-- vim.keymap.set("n", "<leader>?", function()
+			-- 	dapui.eval(nil, { enter = true })
+			-- end, { desc = "eval under cursor" })
 
 			dap.listeners.after.event_initialized["dapui_config"] = function()
 				dapui.open()

@@ -5,6 +5,13 @@ vim.opt.sts = -1
 
 local dap = require("dap")
 
+vim.keymap.set("n", "<leader>to", "<Cmd>TSToolsOrganizeImports<CR>", { desc = "[T]ypescript: [O]rganize Imports" })
+vim.keymap.set("n", "<leader>ts", "<Cmd>TSToolsSortImports<CR>", { desc = "[T]ypescript: [S]ort Imports" })
+vim.keymap.set("n", "<leader>tr", "<Cmd>TSToolsRemoveUnused<CR>", { desc = "[T]ypescript: [R]emove Unused Imports" })
+vim.keymap.set("n", "<leader>ta", "<Cmd>TSToolsAddMissingImports<CR>", { desc = "[T]ypescript: [A]dd Missing Imports" })
+vim.keymap.set("n", "<leader>tf", "<Cmd>TSToolsFixAll<CR>", { desc = "[T]ypescript: [F]ix All Errors" })
+vim.keymap.set("n", "<leader>tc", "<Cmd>TSToolsRenameFile<CR>", { desc = "[T]ypescript: [C]hange Filename" })
+
 dap.adapters["pwa-node"] = {
 	type = "server",
 	port = "${port}",

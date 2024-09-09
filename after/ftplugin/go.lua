@@ -1,11 +1,3 @@
-vim.api.nvim_create_autocmd("BufWritePre", {
-	group = vim.api.nvim_create_augroup("GoFormat", { clear = true }),
-	pattern = "*.go",
-	callback = function()
-		require("go.format").goimport()
-	end,
-})
-
 local test_function_query_string = [[
 (
  (function_declaration
@@ -150,7 +142,11 @@ local attach_to_buffer = function(bufnr, command)
 	})
 end
 vim.api.nvim_create_user_command("GoTestOnSave", function()
-	local cmd = vim.split(vim.fn.input("Command: "), " ")
+	local cmd = vim.api.nvim_create_autocmd("BufWritePost", {
+		group = group,
+		desc = "Run tests on save",
+		command = "GoTest -n",
+	})
 	attach_to_buffer(vim.api.nvim_get_current_buf(), cmd)
 end, {})
 
