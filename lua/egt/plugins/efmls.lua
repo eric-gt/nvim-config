@@ -16,6 +16,7 @@ return {
 			local languages = {
 				typescript = { prettier, prettier_d, eslint_d },
 				lua = { stylua },
+				tf = { terraform_fmt },
 				terraform = { terraform_fmt },
 				toml = { dprint },
 			}
