@@ -64,8 +64,6 @@ return {
 			for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/egt/snips/ft/*.lua", true)) do
 				loadfile(ft_path)()
 			end
-
-			vim.keymap.set("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/lua/egt/plugins/luasnip.lua<CR>")
 		end,
 	},
 }

@@ -14,7 +14,7 @@ return {
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-buffer",
-			"doxnit/cmp-luasnip-choice",
+			"L3MON4D3/cmp-luasnip-choice",
 
 			-- If you want to add a bunch of pre-configured snippets,
 			--    you can use this plugin to help you. It even has snippets
@@ -89,6 +89,7 @@ return {
 					{ name = "luasnip" },
 					{ name = "luasnip_choice" },
 					{ name = "path" },
+					{ name = "luadev", group_index = 0 },
 				},
 			})
 		end,

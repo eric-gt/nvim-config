@@ -5,14 +5,10 @@ return {
 		dependencies = {
 			"nvim-neotest/nvim-nio",
 			"rcarriga/nvim-dap-ui",
-			"folke/neodev.nvim",
 			"theHamsta/nvim-dap-virtual-text",
 			"Joakker/lua-json5",
 		},
 		config = function()
-			require("neodev").setup({
-				library = { plugins = { "nvim-dap-ui" }, types = true },
-			})
 			local dap = require("dap")
 			local vscode = require("dap.ext.vscode")
 			vscode.json_decode = require("json5").parse

@@ -4,8 +4,9 @@ return {
 		lazy = false,
 		dependencies = {
 			-- Automatically install LSPs and related tools to stdpath for neovim
-			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
+			"hrsh7th/nvim-cmp",
+			"mason-org/mason.nvim",
+			"mason-org/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 			-- Useful status updates for LSP.
@@ -92,97 +93,7 @@ return {
 				end,
 			})
 
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-
 			vim.filetype.add({ extension = { templ = "templ" } })
-			local servers = {
-				eslint = {},
-				templ = {
-					filetypes = { "templ" },
-				},
-				yamlls = {
-					schemas = {
-						kubernetes = "*.yaml",
-						["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
-						["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
-						["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
-						["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
-						["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
-						["http://json.schemastore.org/ansible-playbook"] = "*play*.{yml,yaml}",
-						["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
-						["https://json.schemastore.org/dependabot-v2"] = ".github/dependabot.{yml,yaml}",
-						["https://json.schemastore.org/gitlab-ci"] = "*gitlab-ci*.{yml,yaml}",
-						["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "*api*.{yml,yaml}",
-						["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "*docker-compose*.{yml,yaml}",
-						["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = "*flow*.{yml,yaml}",
-					},
-				},
-				htmx = {
-					filetypes = { "html", "templ" },
-				},
-				tailwindcss = {
-					filetypes = { "templ", "astro", "javascript", "typescript", "react" },
-				},
-				terraformls = {
-					filetypes = { "terraform" },
-				},
-				lua_ls = {
-					-- cmd = {...},
-					-- filetypes { ...},
-					-- capabilities = {},
-					settings = {
-						Lua = {
-							runtime = { version = "LuaJIT" },
-							workspace = {
-								checkThirdParty = false,
-								-- Tells lua_ls where to find all the Lua files that you have loaded
-								-- for your neovim configuration.
-								library = {
-									"${3rd}/luv/library",
-									unpack(vim.api.nvim_get_runtime_file("", true)),
-								},
-								-- If lua_ls is really slow on your computer, you can try this instead:
-								-- library = { vim.env.VIMRUNTIME },
-							},
-							completion = {
-								callSnippet = "Replace",
-							},
-							-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-							diagnostics = { disable = { "missing-fields" } },
-						},
-					},
-				},
-			}
-
-			-- Ensure the servers and tools above are installed
-			require("mason").setup()
-
-			-- You can add other tools here that you want Mason to install
-			-- for you, so that they are available from within Neovim.
-			local ensure_installed = vim.tbl_keys(servers or {})
-			vim.list_extend(ensure_installed, {
-				"actionlint",
-				"stylua",
-				"gopls",
-				"lua_ls",
-				"eslint_d",
-				"prettierd",
-				"prettier",
-				"tflint",
-			})
-			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
-
-			require("mason-lspconfig").setup({
-				ensure_installed = { "gopls", "templ", "htmx", "html", "tailwindcss", "yamlls", "terraformls" },
-				handlers = {
-					function(server_name)
-						local server = servers[server_name] or {}
-						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-						require("lspconfig")[server_name].setup(server)
-					end,
-				},
-			})
 		end,
 	},
 }
